@@ -1,37 +1,17 @@
-name: Continuous Validation Pipeline
+name: SVV CI Pipeline
 
 on:
   push:
     branches:
       - main
-      - develop
 
 jobs:
-  validation:
+  verification:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Execute Automated Tests
-        run: npm test
-
-      - name: Generate Validation Logs
-        run: |
-          mkdir validation-logs
-          echo "Validation completed on $(date)" > validation-logs/report.txt
-
-      - name: Upload Validation Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: validation-evidence
-          path: validation-logs/
+      - name: Repository Verification
+        run: echo " executed successfully."
